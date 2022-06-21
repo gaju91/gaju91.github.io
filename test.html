@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <style>
+        :root {
+            --bg_main: #0a1f44;
+            --text_light: #fff;
+            --text_med: #53627c;
+            --text_dark: #1e2432;
+            --red: #ff1e42;
+            --darkred: #c3112d;
+            --orange: #ff8c00;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-weight: normal;
+        }
+
+        button {
+            cursor: pointer;
+        }
+
+        input {
+            -webkit-appearance: none;
+        }
+
+        button,
+        input {
+            border: none;
+            background: none;
+            outline: none;
+            color: inherit;
+        }
+
+        img {
+            display: block;
+            max-width: 100%;
+            height: auto;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        body {
+            font: 1rem/1.3 "Roboto", sans-serif;
+            background: var(--bg_main);
+            color: var(--text_dark);
+            padding: 70px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+
+        /* SECTION #1
+          –––––––––––––––––––––––––––––––––––––––––––––––––– */
+        .top-banner {
+            color: var(--text_light);
+        }
+
+        .heading {
+            font-weight: bold;
+            font-size: 4rem;
+            letter-spacing: 0.02em;
+            padding: 0 0 30px 0;
+        }
+
+        .top-banner form {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .top-banner form input {
+            font-size: 2rem;
+            height: 40px;
+            padding: 5px 5px 10px;
+            border-bottom: 1px solid;
+        }
+
+        .top-banner form input::placeholder {
+            color: currentColor;
+        }
+
+        .top-banner form button {
+            font-size: 1rem;
+            font-weight: bold;
+            letter-spacing: 0.1em;
+            padding: 15px 20px;
+            margin-left: 15px;
+            border-radius: 5px;
+            background: var(--red);
+            transition: background 0.3s ease-in-out;
+        }
+
+        .top-banner form button:hover {
+            background: var(--darkred);
+        }
+
+        .top-banner button {
+            font-size: 1rem;
+            font-weight: bold;
+            letter-spacing: 0.1em;
+            padding: 15px 20px;
+            margin-left: 15px;
+            border-radius: 5px;
+            background: var(--red);
+            transition: background 0.3s ease-in-out;
+        }
+
+        .top-banner button:hover {
+            background: var(--darkred);
+        }
+
+        .top-banner form .msg {
+            position: absolute;
+            bottom: -40px;
+            left: 0;
+            max-width: 450px;
+            min-height: 40px;
+        }
+
+
+        /* SECTION #2
+          –––––––––––––––––––––––––––––––––––––––––––––––––– */
+        .ajax-section {
+            margin: 70px 0 20px;
+        }
+
+        .ajax-section .cities {
+            display: grid;
+            grid-gap: 32px 20px;
+            grid-template-columns: repeat(4, 1fr);
+        }
+
+        .ajax-section .city {
+            position: relative;
+            padding: 40px 10%;
+            border-radius: 20px;
+            background: var(--text_light);
+            color: var(--text_med);
+        }
+
+        .ajax-section .city::after {
+            content: '';
+            width: 90%;
+            height: 50px;
+            position: absolute;
+            bottom: -12px;
+            left: 5%;
+            z-index: -1;
+            opacity: 0.3;
+            border-radius: 20px;
+            background: var(--text_light);
+        }
+
+        .ajax-section figcaption {
+            margin-top: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .ajax-section .city-temp {
+            font-size: 5rem;
+            font-weight: bold;
+            margin-top: 10px;
+            color: var(--text_dark);
+        }
+
+        .ajax-section .city sup {
+            font-size: 0.5em;
+        }
+
+        .ajax-section .city-name sup {
+            padding: 0.2em 0.6em;
+            border-radius: 30px;
+            color: var(--text_light);
+            background: var(--orange);
+        }
+
+        .ajax-section .city-icon {
+            margin-top: 10px;
+            width: 100px;
+            height: 100px;
+        }
+
+        @media screen and (max-width: 1000px) {
+            body {
+                padding: 30px;
+            }
+
+            .ajax-section .cities {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media screen and (max-width: 700px) {
+
+            .heading,
+            .ajax-section .city-temp {
+                font-size: 3rem;
+            }
+
+            .ajax-section {
+                margin-top: 20px;
+            }
+
+            .top-banner form {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .top-banner form input,
+            .top-banner form button {
+                width: 100%;
+            }
+
+            .top-banner form button {
+                margin: 20px 0 0 0;
+            }
+
+            .top-banner form .msg {
+                position: static;
+                max-width: none;
+                min-height: 0;
+                margin-top: 10px;
+            }
+
+            .ajax-section .cities {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media screen and (max-width: 500px) {
+            body {
+                padding: 15px;
+            }
+
+            .ajax-section .cities {
+                grid-template-columns: repeat(1, 1fr);
+            }
+        }
+    </style>
+
+    <title>FreightWise Programming Test</title>
+</head>
+
+<body>
+    <section class="top-banner">
+        <div class="container">
+            <h1 class="heading">FreightWise Weather App</h1>
+            <span>
+                <form>
+                    <input type="text" placeholder="Search for a city" autofocus>
+                    <button type="submit">SUBMIT</button>
+                </form>
+                <button id="location" onclick="onCurrentLocation()">Use Current Location</button>
+                <span>
+        </div>
+    </section>
+    <section class="ajax-section">
+        <div class="container">
+            <ul class="cities"></ul>
+        </div>
+    </section>
+</body>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script>
+    'use strict';
+
+    /**
+     * Software Developer test.
+     *
+     * Doing research and making API calls are an important part of what we do at FreightWise.  This test will
+     * demonstrate your abilities to:
+     *
+     * - Make an API call
+     * - Research an API
+     * - Do basic DOM manipulation
+     * - Parse data
+     * - Handle errors
+     * - Be creative
+     *
+     * Feel free to ask any questions you may have.  Use a lot of comments, and explain why you are doing things.
+     * Don't spend more than 1-2 hours on it - we aren't expecting a finished product, but it should work and look
+     * nice.  Feel free to use any third party libraries, and if you do so, explain why you used them instead of
+     * built in browser APIs.
+     *
+     * Instructions:
+     * - Use the axios (https://github.com/axios/axios) request library to make an API call to the OpenWeatherMap
+     *   API for Current Weather Data using this API key:  25e989bd41e3e24ce13173d8126e0fd6
+     *   We've already imported this library to get you started.
+     * - Use either async/await or Promises.
+     * - Get the weather for Brentwood, TN, and write it to the DOM using the `setResults` method below.  Be
+     *   creative and make it look nice.
+     * - Handle errors and use the `setError` method below to display the error.  Also make it look nice.
+     * - If you find any mistakes in the test, fix them, and leave a comment about what you fixed and why.
+     * - Make sure your code is readable and maintainable.
+     * - Use plenty of descriptive comments.
+     * - Make sure your code runs in the latest version of Google Chrome and Firefox (ES6 is allowed).
+     * - Make your code live (GitHub with GitHub pages works nice).
+     * - Send a link to your finished test to dev-team-jobs@freightwisellc.com.
+     *
+     * Feel free to add your own twist to it (completely optional).  Here are a few ideas:
+     * - Sign up for NewsAPI.org and get the Top Headlines and show them along with the weather.
+     * - Use the browser location API to get the user's current location, and show that location's weather.
+     * - Show a satellite map of the weather in Brentwood.
+     * - Request a user's phone number and send them an SMS with the weather.
+     */
+    class Test {
+        constructor() {
+            /**
+             * Select the list element from the DOM.
+             * We will append multiple city weather in this list.
+             */
+            this.list = document.querySelector('.ajax-section .cities');
+        }
+
+        getGeoLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition((position) => {
+                    this.run(null, position.coords.latitude, position.coords.longitude);
+                });
+            } else {
+                this.setError('Geolocation is not supported by this browser.');
+            }
+        }
+
+        async run(city, a, b) {
+            console.log(new Date().toISOString(), '[Test]', 'Running the test');
+            // If city is not selected show error to user
+            if (!city && (!a && !b)) {
+                this.setError('Please select a city');
+                return;
+            }
+
+            // Axios request to get weather data by city name
+            try {
+                const queryParams = {
+                    appid: '25e989bd41e3e24ce13173d8126e0fd6',
+                    units: 'metric'
+                };
+
+                if (city) {
+                    queryParams.q = city;
+                } else {
+                    queryParams.lat = a;
+                    queryParams.lon = b;
+                }
+
+                const response = await axios.get(`https://api.openweathermap.org/data/2.5/weather`, { params: queryParams });
+                this.setResults(response.data);
+            } catch (error) {
+                this.setError((error && ((error.response && error.response.data && (error.response.data.message || error.response.data)) || (error.code))) || error);
+            }
+        }
+
+        setError(message) {
+            /**
+             * Set the error message in the DOM.
+             * `Toastify` is a third party library to display the
+             *  message on screeen.
+             */
+            Toastify({
+                text: message,
+                duration: 3000,
+                close: true,
+                gravity: "top",
+                position: "center",
+                stopOnFocus: true,
+                style: {
+                    background: "#ED213A",
+                    background: "-webkit-linear-gradient(to right, #93291E, #ED213A)",
+                    background: "linear-gradient(to right, #93291E, #ED213A)"
+                },
+            }).showToast();
+        }
+
+        setResults(results) {
+            /**
+             * Create a list item and append it to the list.
+             */
+            const li = document.createElement("li");
+            li.classList.add("city");
+
+            // get card html for list item
+            li.innerHTML = this.getCityWeatherCard(results);
+
+            // append the list item to list
+            this.list.appendChild(li);
+        }
+
+        /**
+         * Get the weather card for a city.
+         * This function take the weather data and returns a string of HTML
+         * of Card UI for showing weather.
+         * @param {Object} results
+         * @returns {string}
+         */
+        getCityWeatherCard(weatherData) {
+            if (!weatherData) {
+                this.setError('No data found for selected city');
+                return;
+            }
+
+            const { main, weather, name, sys } = weatherData;
+            const icon = `https://openweathermap.org/img/wn/${weather[0]["icon"]}@2x.png`;
+
+            return `<h2 class="city-name" data-name="${name},${sys.country}">
+                <span>${name}</span>
+                <sup>${sys.country}</sup>
+                </h2>
+                <div class="city-temp">${Math.round(main.temp)}<sup>°C</sup></div>
+                <figure>
+                <img class="city-icon" src=${icon} alt=${weather[0]["main"]}>
+                <figcaption>${weather[0]["description"]}</figcaption>
+                </figure>
+            `;
+        }
+    }
+</script>
+<script>
+    'use strict';
+
+    const test = new Test();
+    const input = document.querySelector('.top-banner input');
+    const form = document.querySelector('.top-banner .container form');
+    form.addEventListener('submit',
+        (e) => {
+            e.preventDefault();
+            test.run(input.value, test);
+        }
+    );
+
+    function onCurrentLocation() {
+        test.getGeoLocation()
+    }
+</script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+
+</html>
